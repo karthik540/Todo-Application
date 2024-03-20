@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    container_name: todoapp
+    platform: linux/amd64
+    build: .
+    ports:
+      - "6969:5000"
+    environment:
+      - MONGO_HOST=mongodb
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    platform: linux/amd64
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
